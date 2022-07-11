@@ -40,6 +40,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all 0.4s ease;
 }
 
 /* Hamburguer lines - Top & Bottom */
@@ -54,6 +55,91 @@
     background: inherit;
 }
 
+/* Moves line down */
 .menu-wrap .hamburguer > div:after {
     top: 10px;
+}
+
+/* Toggler animation */
+.menu-wrap .toggler:checked + .hamburguer > div {
+    transform: rotate(135deg);
+}
+
+/* Turns lines into X */
+.menu-wrap .toggler:checked + .hamburguer > div:before,
+.menu-wrap .toggler:checked + .hamburguer > div:after {
+    top: 0;
+    transform: rotate(90deg);
+}
+
+/* Rotate on hover when checked */
+.menu-wrap .toggler:checked:hover + .hamburguer > div {
+    transform: rotate(225deg);
+}
+
+/* Show menu */
+.menu-wrap .toggler:checked ~ .menu {
+    visibility: visible;
+}
+
+.menu-wrap .toggler:checked ~ .menu > div {
+    transform: scale(1);
+    transition: var(--menu-speed);
+}
+
+.menu-wrap .toggler:checked ~ .menu > div > div {
+    opacity: 1;
+    transition: opacity 0.4s ease 0.4s;
+}
+
+.menu-wrap .menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-wrap .menu > div {
+    background: var(--overlay-color);
+    width: 300vw;
+    height: 300vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: scale(0);
+    transition: all 0.4s ease;
+    border-radius: 50%;
+    flex: none;
+}
+
+.menu-wrap .menu > div > div {
+    text-align: center;
+    max-width: 90vw;
+    max-height: 100vh;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.menu-wrap .menu > div > div > ul > li {
+    list-style: none;
+    color: #fff;
+    font-size: 1.5rem;
+    padding: 1rem;
+}
+
+.menu-wrap .menu > div > div > ul > li > a {
+    text-decoration: none;
+    color: inherit;
+    font-weight: bold;
+    transition: color 0.4s ease;
+}
+
+.menu-wrap .menu > div > div > ul > li > a:hover {
+    color: var(--secondary-color);
 }
